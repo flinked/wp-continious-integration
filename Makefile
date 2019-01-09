@@ -39,7 +39,7 @@ deployFront: ## Déploie une nouvelle version de l'application
 dbdeploy: ## Envoie les données sur le serveur
 	php wp-cli.phar db export --add-drop-table dump.sql
 	rsync -av ./dump.sql $(ssh):$(path)
-	ssh $(ssh) "cd $(path); $(phpServer)php wp-cli.phar db import dump.sql; $(phpServer)php wp-cli.phar search-replace '$(localDomain)' '$(domain)';"
+	ssh $(ssh) "cd $(path); $(phpServer)php wp-cli.phar db import dump.sql; $(phpServer)php wp-cli.phar search-replace '$(localDomain)' '$(domain)'; $(phpServer)php wp-cli.phar rewrite structure '/%postname%/';"
 	rm dump.sql
 
 dbimport: ## Récupère les données depuis le serveur

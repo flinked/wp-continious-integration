@@ -1,0 +1,15 @@
+{
+  "name": "gulp-test",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "front": "cd wp-content/themes/flinked/builder && gulp build && cd ../../../../sh && Make deployFront",
+    "back": "cd sh && Make deploy && cd ../",
+    "complete": "cd wp-content/themes/flinked/builder && gulp build && cd ../../../../sh && Make deploy && sh db.sh",
+    "db": "cd sh && sh db.sh",
+    "import": "cd sh && Make dbimport && cd ../"
+  },
+  "dependencies": {
+    "moment": "^2.23.0"
+  }
+}
