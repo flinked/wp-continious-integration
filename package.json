@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "front": "cd wp-content/themes/flinked/builder && gulp build && cd ../../../../sh && Make deployFront",
+    "front": " node sh/notify/front.js && cd wp-content/themes/flinked/builder && gulp build && cd ../../../../sh && Make deployFront",
     "back": "cd sh && Make deploy && cd ../",
-    "complete": "cd wp-content/themes/flinked/builder && gulp build && cd ../../../../sh && Make deploy && sh db.sh",
-    "db": "cd sh && sh db.sh",
-    "import": "cd sh && Make dbimport && cd ../"
+    "complete": "node sh/notify/complete.js && cd wp-content/themes/flinked/builder && gulp build && cd ../../../../sh && Make deploy && sh db.sh",
+    "db": "node sh/notify/db.js && cd sh && sh db.sh node",
+    "import": "cd sh && Make dbimport && cd ../",
+    "slack" : "node sh/notify/db.js"
   },
   "dependencies": {
-    "moment": "^2.23.0"
+    "moment": "^2.23.0",
+    "slack-notify": "^0.1.7"
   }
 }
